@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔓 DARKXCODE CC DECRYPTOR</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', monospace;
+        }
+        
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background-color: #1e1e1e;
+            border-radius: 8px;
+            padding: 30px;
+            width: 100%;
+            max-width: 800px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            border: 1px solid #333;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #333;
+        }
+        
+        .logo {
+            font-size: 2.2em;
+            color: #4CAF50;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+        
+        .tagline {
+            color: #aaa;
+            font-size: 1em;
+        }
+        
+        .input-section {
+            margin-bottom: 30px;
+        }
+        
+        .input-label {
+            color: #4CAF50;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            display: block;
+            font-weight: bold;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 150px;
+            background-color: #2d2d2d;
+            border: 1px solid #444;
+            border-radius: 4px;
+            color: #e0e0e0;
+            padding: 15px;
+            font-size: 1em;
+            resize: vertical;
+            font-family: 'Courier New', monospace;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+            background-color: #262626;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        button {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .decrypt-btn {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+        
+        .decrypt-btn:hover {
+            background-color: #45a049;
+        }
+        
+        .clear-btn {
+            background-color: #555;
+            color: #fff;
+        }
+        
+        .clear-btn:hover {
+            background-color: #666;
+        }
+        
+        .result-section {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #2d2d2d;
+            border-radius: 4px;
+            border: 1px solid #444;
+        }
+        
+        .result-label {
+            color: #4CAF50;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+        
+        .result-box {
+            padding: 15px;
+            background-color: #262626;
+            border-radius: 4px;
+            color: #e0e0e0;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            word-break: break-all;
+            border: 1px solid #444;
+            min-height: 80px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #777;
+            font-size: 0.85em;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🔓 DARKXCODE CC DECRYPTOR</div>
+            <div class="tagline">Decrypt encrypted card data from DARKXCODE STRIPE CHECKER</div>
+        </div>
+        
+        <div class="input-section">
+            <label class="input-label">Paste Encrypted Card Data:</label>
+            <textarea id="encryptedInput" placeholder="Paste DXC_ENCRYPTED_... or DXC_BASE64_... data here"></textarea>
+            
+            <div class="buttons">
+                <button class="decrypt-btn" onclick="decryptData()">🔓 DECRYPT NOW</button>
+                <button class="clear-btn" onclick="clearData()">🗑️ CLEAR</button>
+            </div>
+        </div>
+        
+        <div class="result-section" id="resultSection" style="display: none;">
+            <div class="result-label">Decrypted Card Data:</div>
+            <div class="result-box" id="decryptedResult"></div>
+        </div>
+        
+        <div class="footer">
+            © 2026 DARKXCODE STRIPE CHECKER v2.1 | 🔒 End-to-End Encryption System
+        </div>
+    </div>
+
+    <script>
+        // Base64 Decoding Function
+        function base64Decode(str) {
+            try {
+                // Add padding if needed
+                str = str.replace(/-/g, '+').replace(/_/g, '/');
+                const pad = str.length % 4;
+                if (pad) {
+                    str += '===='.slice(pad);
+                }
+                return decodeURIComponent(atob(str).split('').map(function(c) {
+                    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                }).join(''));
+            } catch (e) {
+                return "Base64 decode error";
+            }
+        }
+        
+        // URL Safe Base64 Decode
+        function urlSafeBase64Decode(str) {
+            try {
+                str = str.replace(/-/g, '+').replace(/_/g, '/');
+                const pad = str.length % 4;
+                if (pad) {
+                    str += '===='.slice(pad);
+                }
+                return atob(str);
+            } catch (e) {
+                return "URL Safe decode error";
+            }
+        }
+        
+        // Main Decryption Function
+        function decryptData() {
+            const input = document.getElementById('encryptedInput').value.trim();
+            let decrypted = "";
+            
+            if (!input) {
+                alert("Please paste encrypted data first!");
+                return;
+            }
+            
+            try {
+                if (input.startsWith("DXC_ENCRYPTED_")) {
+                    // For Fernet encrypted data (server-side encryption)
+                    const encrypted = input.replace("DXC_ENCRYPTED_", "");
+                    // Note: Full Fernet decryption requires server-side key
+                    // This is a client-side representation
+                    decrypted = "🔒 Server-Side Encrypted\n";
+                    decrypted += "Full decryption requires bot's private key\n";
+                    decrypted += "Encrypted Hash: " + encrypted.substring(0, 20) + "...";
+                    
+                } else if (input.startsWith("DXC_BASE64_")) {
+                    // For simple base64 encoded data
+                    const encoded = input.replace("DXC_BASE64_", "");
+                    decrypted = base64Decode(encoded);
+                    
+                } else if (input.includes("|") && input.length > 20) {
+                    // Already decrypted
+                    decrypted = input;
+                    
+                } else {
+                    // Try to decode as base64
+                    try {
+                        decrypted = base64Decode(input);
+                    } catch (e) {
+                        decrypted = "❌ Invalid format. Expected:\n";
+                        decrypted += "• DXC_ENCRYPTED_... (Channel format)\n";
+                        decrypted += "• DXC_BASE64_... (Fallback format)\n";
+                        decrypted += "• Plain cc|mm|yy|cvv";
+                    }
+                }
+                
+                // Display result
+                document.getElementById('decryptedResult').textContent = decrypted;
+                document.getElementById('resultSection').style.display = 'block';
+                
+                // Auto-copy to clipboard
+                if (decrypted.includes("|") && decrypted.length > 10) {
+                    navigator.clipboard.writeText(decrypted).then(() => {
+                        console.log("Decrypted data copied to clipboard");
+                    });
+                }
+                
+            } catch (error) {
+                document.getElementById('decryptedResult').textContent = 
+                    "❌ Decryption Error: " + error.message;
+                document.getElementById('resultSection').style.display = 'block';
+            }
+        }
+        
+        function clearData() {
+            document.getElementById('encryptedInput').value = "";
+            document.getElementById('resultSection').style.display = "none";
+        }
+        
+        // Auto-process URL parameters
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const data = urlParams.get('data');
+            
+            if (data) {
+                const decodedData = decodeURIComponent(data);
+                document.getElementById('encryptedInput').value = decodedData;
+                
+                // Auto-decrypt after 1 second
+                setTimeout(decryptData, 1000);
+            }
+        };
+    </script>
+</body>
+</html>

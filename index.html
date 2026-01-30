@@ -27,7 +27,7 @@
             border-radius: 8px;
             padding: 30px;
             width: 100%;
-            max-width: 800px;
+            max-width: 500px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
             border: 1px solid #333;
         }
@@ -40,73 +40,65 @@
         }
         
         .logo {
-            font-size: 2.2em;
-            color: #4CAF50;
+            font-size: 2em;
+            color: #00ff88;
             margin-bottom: 8px;
-            letter-spacing: 1px;
+            text-shadow: 0 0 5px #00ff88;
         }
         
         .tagline {
             color: #aaa;
-            font-size: 1em;
+            font-size: 0.9em;
         }
         
         .input-section {
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
         
         .input-label {
-            color: #4CAF50;
-            margin-bottom: 10px;
-            font-size: 1.1em;
+            color: #00ff88;
+            margin-bottom: 8px;
+            font-size: 1em;
             display: block;
-            font-weight: bold;
         }
         
         textarea {
             width: 100%;
-            height: 150px;
+            height: 80px;
             background-color: #2d2d2d;
             border: 1px solid #444;
             border-radius: 4px;
             color: #e0e0e0;
-            padding: 15px;
-            font-size: 1em;
-            resize: vertical;
+            padding: 12px;
+            font-size: 0.9em;
+            resize: none;
             font-family: 'Courier New', monospace;
-        }
-        
-        textarea:focus {
-            outline: none;
-            border-color: #4CAF50;
-            background-color: #262626;
         }
         
         .buttons {
             display: flex;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 10px;
+            margin-top: 15px;
         }
         
         button {
             flex: 1;
-            padding: 14px;
+            padding: 12px;
             border: none;
             border-radius: 4px;
-            font-size: 1em;
+            font-size: 0.9em;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.2s;
-            font-family: 'Courier New', monospace;
         }
         
         .decrypt-btn {
-            background-color: #4CAF50;
-            color: #fff;
+            background-color: #00ff88;
+            color: #000;
         }
         
         .decrypt-btn:hover {
-            background-color: #45a049;
+            background-color: #00cc6a;
         }
         
         .clear-btn {
@@ -114,178 +106,217 @@
             color: #fff;
         }
         
-        .clear-btn:hover {
-            background-color: #666;
-        }
-        
         .result-section {
-            margin-top: 30px;
-            padding: 20px;
+            margin-top: 20px;
+            padding: 15px;
             background-color: #2d2d2d;
             border-radius: 4px;
             border: 1px solid #444;
+            display: none;
         }
         
-        .result-label {
-            color: #4CAF50;
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 10px;
-            font-size: 1.1em;
+        }
+        
+        .result-title {
+            color: #00ff88;
             font-weight: bold;
         }
         
-        .result-box {
-            padding: 15px;
-            background-color: #262626;
+        .copy-btn {
+            background-color: #2196F3;
+            color: white;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.8em;
+        }
+        
+        .copy-btn.copied {
+            background-color: #4CAF50;
+        }
+        
+        .card-display {
+            background-color: #000;
+            padding: 12px;
             border-radius: 4px;
-            color: #e0e0e0;
-            font-family: 'Courier New', monospace;
+            border: 1px solid #00ff88;
             font-size: 1.1em;
+            letter-spacing: 1px;
+            color: #00ff88;
+            text-align: center;
+            margin-top: 10px;
             word-break: break-all;
-            border: 1px solid #444;
-            min-height: 80px;
         }
         
         .footer {
             text-align: center;
-            margin-top: 30px;
-            color: #777;
-            font-size: 0.85em;
-            padding-top: 20px;
-            border-top: 1px solid #333;
+            margin-top: 25px;
+            color: #666;
+            font-size: 0.8em;
         }
         
-        @media (max-width: 600px) {
-            .container {
-                padding: 20px;
-            }
-            
-            .buttons {
-                flex-direction: column;
-            }
+        .example {
+            background-color: #2d2d2d;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 15px;
+            font-size: 0.8em;
+            color: #888;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <div class="logo">🔓 DARKXCODE CC DECRYPTOR</div>
-            <div class="tagline">Decrypt encrypted card data from DARKXCODE STRIPE CHECKER</div>
+            <div class="logo">🔓 DARKXCODE DECRYPTOR</div>
+            <div class="tagline">Decrypt card data from Telegram channels</div>
         </div>
         
         <div class="input-section">
-            <label class="input-label">Paste Encrypted Card Data:</label>
-            <textarea id="encryptedInput" placeholder="Paste DXC_ENCRYPTED_... or DXC_BASE64_... data here"></textarea>
+            <label class="input-label">Paste encrypted card data:</label>
+            <textarea id="encryptedInput" placeholder="Paste DXC_... data here"></textarea>
             
             <div class="buttons">
-                <button class="decrypt-btn" onclick="decryptData()">🔓 DECRYPT NOW</button>
-                <button class="clear-btn" onclick="clearData()">🗑️ CLEAR</button>
+                <button class="decrypt-btn" onclick="decryptData()">🔓 DECRYPT</button>
+                <button class="clear-btn" onclick="clearData()">CLEAR</button>
             </div>
         </div>
         
-        <div class="result-section" id="resultSection" style="display: none;">
-            <div class="result-label">Decrypted Card Data:</div>
-            <div class="result-box" id="decryptedResult"></div>
+        <div class="result-section" id="resultSection">
+            <div class="result-header">
+                <div class="result-title">DECRYPTED CARD:</div>
+                <button class="copy-btn" onclick="copyToClipboard()" id="copyButton">COPY</button>
+            </div>
+            <div class="card-display" id="decryptedResult"></div>
+        </div>
+        
+        <div class="example">
+            <strong>Example:</strong> DXC_9666666666666666$67$30$628
+            <br>→ Decrypts to: 4111111111111111|12|25|123
         </div>
         
         <div class="footer">
-            © 2026 DARKXCODE STRIPE CHECKER v2.1 | 🔒 End-to-End Encryption System
+            © 2026 DARKXCODE STRIPE CHECKER v2.1 | Simple ROT5 Encryption
         </div>
     </div>
 
     <script>
-        // Base64 Decoding Function
-        function base64Decode(str) {
-            try {
-                // Add padding if needed
-                str = str.replace(/-/g, '+').replace(/_/g, '/');
-                const pad = str.length % 4;
-                if (pad) {
-                    str += '===='.slice(pad);
-                }
-                return decodeURIComponent(atob(str).split('').map(function(c) {
-                    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-                }).join(''));
-            } catch (e) {
-                return "Base64 decode error";
+        // Simple ROT5 decryption (reverse of bot's encryption)
+        function decryptCardData(encryptedString) {
+            console.log("Decrypting:", encryptedString);
+            
+            if (!encryptedString.startsWith("DXC_")) {
+                return "❌ Invalid format. Must start with DXC_";
             }
-        }
-        
-        // URL Safe Base64 Decode
-        function urlSafeBase64Decode(str) {
-            try {
-                str = str.replace(/-/g, '+').replace(/_/g, '/');
-                const pad = str.length % 4;
-                if (pad) {
-                    str += '===='.slice(pad);
-                }
-                return atob(str);
-            } catch (e) {
-                return "URL Safe decode error";
-            }
-        }
-        
-        // Main Decryption Function
-        function decryptData() {
-            const input = document.getElementById('encryptedInput').value.trim();
+            
+            // Remove DXC_ prefix
+            const encrypted = encryptedString.substring(4);
             let decrypted = "";
             
+            // Reverse ROT5 encryption
+            for (let i = 0; i < encrypted.length; i++) {
+                const char = encrypted[i];
+                
+                if (char >= '0' && char <= '9') {
+                    // Reverse digit rotation (ROT5)
+                    const digit = parseInt(char);
+                    const reversed = (digit - 5 + 10) % 10;
+                    decrypted += reversed.toString();
+                }
+                else if (char === '$') {
+                    // Convert $ back to |
+                    decrypted += '|';
+                }
+                else if ((char >= 'a' && char <= 'z') || (char >= 'A' && char <= 'Z')) {
+                    // Reverse letter rotation (ROT5)
+                    const isLower = char >= 'a' && char <= 'z';
+                    const base = isLower ? 'a'.charCodeAt(0) : 'A'.charCodeAt(0);
+                    const code = char.charCodeAt(0) - base;
+                    const reversed = (code - 5 + 26) % 26;
+                    decrypted += String.fromCharCode(reversed + base);
+                }
+                else {
+                    decrypted += char;
+                }
+            }
+            
+            return decrypted;
+        }
+        
+        // UI Functions
+        function decryptData() {
+            const input = document.getElementById('encryptedInput').value.trim();
+            
             if (!input) {
-                alert("Please paste encrypted data first!");
+                alert("Please paste encrypted data!");
                 return;
             }
             
-            try {
-                if (input.startsWith("DXC_ENCRYPTED_")) {
-                    // For Fernet encrypted data (server-side encryption)
-                    const encrypted = input.replace("DXC_ENCRYPTED_", "");
-                    // Note: Full Fernet decryption requires server-side key
-                    // This is a client-side representation
-                    decrypted = "🔒 Server-Side Encrypted\n";
-                    decrypted += "Full decryption requires bot's private key\n";
-                    decrypted += "Encrypted Hash: " + encrypted.substring(0, 20) + "...";
+            const resultSection = document.getElementById('resultSection');
+            const resultDisplay = document.getElementById('decryptedResult');
+            
+            // Show loading
+            resultSection.style.display = 'block';
+            resultDisplay.textContent = "🔍 Decrypting...";
+            resultDisplay.style.color = "#ff9800";
+            
+            // Decrypt
+            setTimeout(() => {
+                try {
+                    const decrypted = decryptCardData(input);
+                    resultDisplay.textContent = decrypted;
                     
-                } else if (input.startsWith("DXC_BASE64_")) {
-                    // For simple base64 encoded data
-                    const encoded = input.replace("DXC_BASE64_", "");
-                    decrypted = base64Decode(encoded);
-                    
-                } else if (input.includes("|") && input.length > 20) {
-                    // Already decrypted
-                    decrypted = input;
-                    
-                } else {
-                    // Try to decode as base64
-                    try {
-                        decrypted = base64Decode(input);
-                    } catch (e) {
-                        decrypted = "❌ Invalid format. Expected:\n";
-                        decrypted += "• DXC_ENCRYPTED_... (Channel format)\n";
-                        decrypted += "• DXC_BASE64_... (Fallback format)\n";
-                        decrypted += "• Plain cc|mm|yy|cvv";
+                    if (decrypted.includes("|") && decrypted.length >= 15) {
+                        resultDisplay.style.color = "#00ff88";
+                        document.getElementById('copyButton').style.display = 'block';
+                        
+                        // Auto-copy to clipboard
+                        setTimeout(copyToClipboard, 300);
+                    } else {
+                        resultDisplay.style.color = "#ff5555";
+                        document.getElementById('copyButton').style.display = 'none';
                     }
+                } catch (error) {
+                    resultDisplay.textContent = "❌ Error: " + error.message;
+                    resultDisplay.style.color = "#ff5555";
+                    document.getElementById('copyButton').style.display = 'none';
                 }
-                
-                // Display result
-                document.getElementById('decryptedResult').textContent = decrypted;
-                document.getElementById('resultSection').style.display = 'block';
-                
-                // Auto-copy to clipboard
-                if (decrypted.includes("|") && decrypted.length > 10) {
-                    navigator.clipboard.writeText(decrypted).then(() => {
-                        console.log("Decrypted data copied to clipboard");
-                    });
-                }
-                
-            } catch (error) {
-                document.getElementById('decryptedResult').textContent = 
-                    "❌ Decryption Error: " + error.message;
-                document.getElementById('resultSection').style.display = 'block';
+            }, 300);
+        }
+        
+        function copyToClipboard() {
+            const resultText = document.getElementById('decryptedResult').textContent;
+            
+            if (!resultText || resultText.includes("❌") || resultText.includes("🔍")) {
+                return;
             }
+            
+            navigator.clipboard.writeText(resultText).then(() => {
+                const copyBtn = document.getElementById('copyButton');
+                copyBtn.textContent = "✓ COPIED";
+                copyBtn.classList.add('copied');
+                
+                setTimeout(() => {
+                    copyBtn.textContent = "COPY";
+                    copyBtn.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Copy failed:', err);
+            });
         }
         
         function clearData() {
             document.getElementById('encryptedInput').value = "";
             document.getElementById('resultSection').style.display = "none";
+            document.getElementById('decryptedResult').textContent = "";
+            document.getElementById('copyButton').classList.remove('copied');
+            document.getElementById('copyButton').textContent = "COPY";
         }
         
         // Auto-process URL parameters
@@ -294,12 +325,24 @@
             const data = urlParams.get('data');
             
             if (data) {
-                const decodedData = decodeURIComponent(data);
-                document.getElementById('encryptedInput').value = decodedData;
-                
-                // Auto-decrypt after 1 second
-                setTimeout(decryptData, 1000);
+                try {
+                    const decodedData = decodeURIComponent(data);
+                    document.getElementById('encryptedInput').value = decodedData;
+                    
+                    // Auto-decrypt
+                    setTimeout(decryptData, 500);
+                } catch (e) {
+                    console.error("Error with URL data:", e);
+                }
             }
+            
+            // Add Enter key support
+            document.getElementById('encryptedInput').addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    decryptData();
+                }
+            });
         };
     </script>
 </body>
